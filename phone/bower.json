@@ -1,0 +1,9 @@
+{
+  "name": "newapp",
+  "private": true,
+  "dependencies": {
+    "vue": "1.0.21",
+    "vue-router": "0.7.13",
+    "vue-resource": "~0.9.3"
+  }
+}
