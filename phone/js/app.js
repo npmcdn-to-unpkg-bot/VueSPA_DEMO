@@ -1,38 +1,34 @@
-﻿let index = require('../components/index.vue');
-let users = require('../components/users/list.vue');
-let users_edit = require('../components/users/edit.vue');
-let login = require('../components/login.vue');
-let foo = require('../components/foo.vue');
-let bar = require('../components/bar.vue');
-
-
-
-//路由器需要一个根组件。
+﻿//路由器需要一个根组件。
 let Menu = Vue.extend({});
 // 创建一个路由器实例
 let router = new VueRouter();
 // 定义路由规则
 router.map({
     '/': {
-        component: index
+        name:'home',
+        component: function(reslove){
+            return require(['../components/index.vue'],reslove)
+        }
     },
     '/login': {
-        component: login
-    },
-    '/foo': {
-        component: foo
-    },
-    '/bar': {
-        component: bar
-    },
+        component: function(reslove){
+            return require(['../components/login.vue'],reslove)
+        }
+    },   
     '/users/edit': {
-        component: users_edit
+        component: function(reslove){
+            return require(['../components/users/edit.vue'],reslove)
+        }
     },
     '/users/edit/:id': {
-        component: users_edit
+        component: function(reslove){
+            return require(['../components/users/edit.vue'],reslove)
+        }
     },
     '/users': {
-        component: users
+        component:  function(reslove){
+            return require(['../components/users/list.vue'],reslove)
+        }
     }
 });
 

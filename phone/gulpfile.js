@@ -18,17 +18,16 @@ gulp.task('bundle', function () {
      gulp.src(mapFiles(appList, 'js'))
        .pipe(named())
        .pipe(webpack(getConfig()))
-       .pipe(babel({ "presets": ["es2015"] }))
+       .pipe(babel({"ignore": ["*.map"], "presets": ["es2015"] }))
        .pipe(gulp.dest('./js/dist/'))
      
 })
 
 gulp.task('watch', function () {
     return gulp.src(mapFiles(appList, 'js'))
-
         .pipe(named())
         .pipe(webpack(getConfig({ watch: true })))
-        .pipe(babel({ "presets": ["es2015"] }))
+        .pipe(babel({"ignore": ["*.map"], "presets": ["es2015"] }))
         .pipe(gulp.dest('./js/dist/'))
 })
 
@@ -36,11 +35,15 @@ gulp.task('watch', function () {
 
 function getConfig(opt) {
     var config = {
+        output:{
+            publicPath: './js/dist/', // This is used to generate URLs
+        },
         module: {
             loaders: [
               { test: /\.vue$/, loader: 'vue' }
             ]
-        }//,devtool: 'source-map'
+        }
+        ,devtool: 'source-map'
     }
     if (!opt) {
         return config
