@@ -17,9 +17,9 @@
             </div>
             <div class="mui-card" style="margin-bottom: 35px;">
                 <ul class="mui-table-view">
-                    <li v-for="item in [1,2,3]" class="mui-table-view-cell" >
-                        <a href="#!/users/edit/{{item}}" class="mui-navigate-right">
-                            item {{item}}
+                    <li v-for="item in pages" class="mui-table-view-cell">
+                        <a href="#!/users/edit/{{item.id}}" class="mui-navigate-right">
+                            item {{item.title}}
                         </a>
                     </li>
                 </ul>
@@ -30,8 +30,15 @@
 
 <script>
     module.exports = {
-        data: {
-            pagelist: [1, 2]
+        data: {pages:[]},
+        route: {
+            data: function(){
+                console.log('in')
+                var self = this;
+                var _data=[{"id":"1","title":"AAAAAAAAAAA"},{"id":"1","title":"BBBBBBBBBBB"}];
+                //self.pages=_data;
+                self.$set('pages',_data); 
+            }
         },
         ready: function() {
             //alert(0);
